@@ -1,0 +1,62 @@
+/* Color System with Light and Dark Variants */
+
+:root {
+  /* Background Colors */
+  --color-bg: #f2e7d6;
+  --color-bg-dark: #1a1410;
+
+  /* Primary Colors */
+  --color-primary: #d7a429;
+  --color-primary-dark: #a8821f;
+
+  /* Secondary Colors */
+  --color-secondary: #c57429;
+  --color-secondary-dark: #8e571d;
+}
+
+/* Light Mode (default) */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-secondary-dark);
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-bg-dark);
+    color: var(--color-primary);
+  }
+}
+
+/* Utility Classes */
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-primary-dark {
+  background-color: var(--color-primary-dark);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-secondary-dark {
+  background-color: var(--color-secondary-dark);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-primary-dark {
+  color: var(--color-primary-dark);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-secondary-dark {
+  color: var(--color-secondary-dark);
+}
