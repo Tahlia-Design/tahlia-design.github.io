@@ -4,14 +4,17 @@
   /* Background Colors */
   --color-bg: #f2e7d6;
   --color-bg-dark: #1a1410;
+  --color-bg-light: #ffffff88;
 
   /* Primary Colors */
   --color-primary: #d7a429;
   --color-primary-dark: #a8821f;
+  --color-primary-light: #e9be5b;
 
   /* Secondary Colors */
   --color-secondary: #c57429;
-  --color-secondary-dark: #8e571d;
+  --color-secondary-dark: #030303;
+  --color-secondary-light: #e09f61;
 }
 
 /* Light Mode (default) */

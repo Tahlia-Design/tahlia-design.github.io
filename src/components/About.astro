@@ -1,0 +1,48 @@
+<section id="about" class="about">
+  <div class="container about-content">
+    <div class="about-image">
+      <div class="image-placeholder"></div>
+    </div>
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>Hello! I'm a passionate graphic designer with expertise in creating compelling visual solutions that elevate brands and engage audiences.</p>
+      <p>With a background in visual arts and years of experience in the design industry, I specialize in creating unique, memorable designs that tell your brand's story.</p>
+      <p>Whether it's brand identity, packaging, or digital design, I'm here to bring your vision to life with creativity and precision.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background-color: white;
+  }
+
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 4rem;
+  }
+
+  .about-text h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p {
+    margin-bottom: 1.25rem;
+    color: #555;
+    line-height: 1.8;
+  }
+</style>

@@ -1,0 +1,81 @@
+---
+const { image, imageAlt, tagline, link } = Astro.props;
+---
+<section id="hero" class="hero">
+  <div class="container hero-content">
+    <img src={image} alt={imageAlt} class="hero-logo" />
+    <p class="tagline">{tagline}</p>
+    <a href={link} class="hero-btn">View My Work</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/images/background.jpg');
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    z-index: 0;
+  }
+
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+    animation: fadeInDown 0.8s ease-out;
+  }
+
+  .hero-logo {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+  }
+
+  button, .hero-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg-dark);
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  button:hover, .hero-btn:hover {
+    background-color: var(--color-secondary);
+    transform: scale(1.08);
+  }
+</style>

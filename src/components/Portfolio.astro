@@ -1,0 +1,77 @@
+---
+import { portfolios } from '../data/portfolios';
+import PortfolioCard from './PortfolioCard.astro';
+import { Carousel } from 'webcoreui/astro'
+const slideOptions = {
+  itemsPerSlide: 4,
+};
+---
+
+<section id="portfolio" class="portfolio">
+    <div class="container">
+      <h2>Check Out My Work</h2>
+      <p class="section-subtitle">A selection of my recent design projects</p>
+
+      <Carousel items={portfolios.length} itemsPerSlide={slideOptions.itemsPerSlide} pagination={{type: 'dots'}} >
+          {portfolios.map(portfolio => (
+            <li>
+              <PortfolioCard {...portfolio} />
+            </li>
+          ))}
+      </Carousel>
+      
+    </div>
+  </section>
+
+<style is:global>
+  .portfolio {
+    background-color: var(--color-bg);
+    padding-bottom: 3rem
+  }
+
+  section#portfolio > div.container > section {
+    padding: 0 0;
+  }
+
+  /* Carousel */
+  section#portfolio > div.container > section > div[data-id='w-carousel'] > ul {
+    --w-slide-width: calc(25% - 20px)!important;
+    gap: 20px;
+    margin: 1rem 0;
+  }
+
+  @media (max-width: 900px) {
+    section#portfolio > div.container > section > div[data-id='w-carousel'] > ul {
+      --w-slide-width: 50%!important; /* 2 per row */
+    }
+  }
+
+  @media (max-width: 600px) {
+    section#portfolio > div.container > section > div[data-id='w-carousel'] > ul {
+      --w-slide-width: 100%!important; /* 1 per row */
+    }
+}
+
+  /* Pagination root */
+  section#portfolio > div.container > section > ul[data-id='w-pagination'] { 
+    margin-top: 1.5rem;
+    gap: 7px;
+  }
+
+  /* Pagination buttons */
+  section#portfolio > div.container > section > ul[data-id='w-pagination'] > li > button { 
+    height: 18px;
+    width: 18px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  section#portfolio > div.container > section > ul[data-id='w-pagination'] > li > button:hover { 
+    transform: scale(1.1);
+  }
+
+  /* Pagination active button */
+  section#portfolio > div.container > section > ul[data-id='w-pagination'] > li > button[data-active="true"] { 
+    width: 36px;
+  }
+
+</style>

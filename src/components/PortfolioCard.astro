@@ -1,0 +1,62 @@
+---
+const { title, description, image, link } = Astro.props;
+---
+
+<article class="portfolio-card">
+  <a href={link} class="portfolio-card__image-link">
+    <img src={image} alt={title} class="portfolio-card__image"/>
+  </a>
+  <div class="portfolio-card__content">
+    <h3 class="portfolio-card__title">{title}</h3>
+    <p class="portfolio-card__description">{description}</p>
+  </div>
+</article>
+
+<style>
+.portfolio-card {
+  background: var(--color-bg-light);
+  border-radius: 1rem;
+  /* box-shadow: 0 2px 16px rgba(0,0,0,0.07); */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+  max-height: 400px;
+  width: 100%;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.portfolio-card:hover {
+  transform: scale(1.04);
+  /* box-shadow: 0 4px 24px rgba(0,0,0,0.13); */
+}
+
+.portfolio-card__image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-card__content {
+  padding: 1.25rem 1.25rem 1.5rem 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.portfolio-card__title {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.portfolio-card__description {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+</style>
