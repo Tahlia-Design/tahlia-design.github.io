@@ -1,77 +1,169 @@
 ---
 import { portfolios } from '../data/portfolios';
-import PortfolioCard from './PortfolioCard.astro';
-import { Carousel } from 'webcoreui/astro'
-const slideOptions = {
-  itemsPerSlide: 4,
-};
 ---
 
 <section id="portfolio" class="portfolio">
-    <div class="container">
-      <h2>Check Out My Work</h2>
-      <p class="section-subtitle">A selection of my recent design projects</p>
+  <div class="container">
+    <h2>Check Out My Work</h2>
+    <p class="section-subtitle">A selection of my recent design projects</p>
 
-      <Carousel items={portfolios.length} itemsPerSlide={slideOptions.itemsPerSlide} pagination={{type: 'dots'}} >
-          {portfolios.map(portfolio => (
-            <li>
-              <PortfolioCard {...portfolio} />
+    <div class="glide">
+      <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+          {portfolios.map((portfolio) => (
+            <li class="glide__slide">
+              <div class="portfolio-card">
+                <img src={portfolio.image} alt={portfolio.title} />
+                <div class="portfolio-content">
+                  <h3>{portfolio.title}</h3>
+                  <p>{portfolio.description}</p>
+                  {portfolio.link && (
+                    <a href={portfolio.link} target="_blank" rel="noopener noreferrer" class="portfolio-link">
+                      View Project →
+                    </a>
+                  )}
+                </div>
+              </div>
             </li>
           ))}
-      </Carousel>
-      
+        </ul>
+      </div>
+      <div class="glide__arrows" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">←</button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">→</button>
+      </div>
+      <div class="glide__dots" data-glide-el="controls[nav]">
+        {portfolios.map((_, index) => (
+          <button class="glide__dot" data-glide-dir={`=${index}`}></button>
+        ))}
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-<style is:global>
+<style>
+  @import '@glidejs/glide/dist/css/glide.core.min.css';
+  @import '@glidejs/glide/dist/css/glide.theme.min.css';
+
   .portfolio {
     background-color: var(--color-bg);
-    padding-bottom: 3rem
+    padding-bottom: 3rem;
+  }
+
+  .portfolio-card {
+    background: var(--color-surface);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .portfolio-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .portfolio-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .portfolio-content h3 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+    color: var(--color-text);
+  }
+
+  .portfolio-content p {
+    margin: 0.5rem 0 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text-muted, #666);
+  }
+
+  .portfolio-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+  }
+
+  .portfolio-link:hover {
+    opacity: 0.8;
+  }
+
+  .glide__arrows {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .glide__arrow {
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .glide__arrow:hover {
+    opacity: 0.8;
+  }
+
+  .glide__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .glide__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-border);
+    border: none;
+    cursor: pointer;
+  }
+
+  .glide__dot.glide__dot--active {
+    background: var(--color-primary);
   }
 
   section#portfolio > div.container > section {
     padding: 0 0;
   }
-
-  /* Carousel */
-  section#portfolio > div.container > section > div[data-id='w-carousel'] > ul {
-    --w-slide-width: calc(25% - 20px)!important;
-    gap: 20px;
-    margin: 1rem 0;
-  }
-
-  @media (max-width: 900px) {
-    section#portfolio > div.container > section > div[data-id='w-carousel'] > ul {
-      --w-slide-width: 50%!important; /* 2 per row */
-    }
-  }
-
-  @media (max-width: 600px) {
-    section#portfolio > div.container > section > div[data-id='w-carousel'] > ul {
-      --w-slide-width: 100%!important; /* 1 per row */
-    }
-}
-
-  /* Pagination root */
-  section#portfolio > div.container > section > ul[data-id='w-pagination'] { 
-    margin-top: 1.5rem;
-    gap: 7px;
-  }
-
-  /* Pagination buttons */
-  section#portfolio > div.container > section > ul[data-id='w-pagination'] > li > button { 
-    height: 18px;
-    width: 18px;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-  }
-
-  section#portfolio > div.container > section > ul[data-id='w-pagination'] > li > button:hover { 
-    transform: scale(1.1);
-  }
-
-  /* Pagination active button */
-  section#portfolio > div.container > section > ul[data-id='w-pagination'] > li > button[data-active="true"] { 
-    width: 36px;
-  }
-
 </style>
+
+<script>
+  import Glide from '@glidejs/glide';
+
+  const glide = new Glide('.glide', {
+    type: 'carousel',
+    startAt: 0,
+    perView: 3,
+    gap: 20,
+    autoplay: 5000,
+    hoverpause: true,
+  });
+
+  glide.mount();
+</script>
